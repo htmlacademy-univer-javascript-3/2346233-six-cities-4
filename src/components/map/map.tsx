@@ -4,7 +4,7 @@ import { City } from '../../types/city';
 import { Offer } from '../../types/offer';
 import { URL_MARKER_DEFAULT } from '../constants/constants';
 
-import useMap from '../hooks/useMap';
+import useMap from '../../hooks/useMap';
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {

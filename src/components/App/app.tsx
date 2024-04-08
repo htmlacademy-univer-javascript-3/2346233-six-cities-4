@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AppRoute } from '../constants/constants';
-import { AuthorizationStatus } from '../constants/constants';
+import { AppRoute, AuthorizationStatus } from '../constants/constants';
+import { Offer } from '../../types/offer';
 
 import MainPage from '../pages/mainPage/mainPage';
 import FavoritesPage from '../pages/favoritesPages/favoritesPage';
@@ -11,15 +11,17 @@ import PrivateRoute from '../privateRoute/privateRoute';
 
 type AppScreenProps = {
   cardsNumber: number;
+  offers: Offer[];
 };
 
-function App({cardsNumber}: AppScreenProps): JSX.Element {
+function App({cardsNumber, offers}: AppScreenProps): JSX.Element {
+  const favorites = offers.filter((o) => o.isFavorite);
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage cardsNumber={cardsNumber}/>}
+          element={<MainPage cardsNumber={cardsNumber} offers={offers}/>}
         />
         <Route
           path={AppRoute.Login}
@@ -29,9 +31,9 @@ function App({cardsNumber}: AppScreenProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <FavoritesPage/>
+              <FavoritesPage favorites={favorites}/>
             </PrivateRoute>
           }
         />

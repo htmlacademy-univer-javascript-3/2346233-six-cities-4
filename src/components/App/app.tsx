@@ -2,15 +2,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../constants/constants';
 import { Offer } from '../../types/offer';
 import { Review } from '../../types/review.ts';
-import { useAppDispatch, useAppSelector } from '../../hooks/index.ts';
-import { listFilling } from '../../store/action.ts';
+import { useAppSelector } from '../../hooks/index.ts';
 
-
+import LoadingScreen from '../../pages/loading-screen/loading-screen.tsx';
 import MainScreen from '../../pages/main-screen/main-screen';
 import FavoritesScreen from '../../pages/favorites/favorites-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import OfferScreen from '../../pages/offer/offer-screen';
-import NotFoundScreen from '../../pages/not-found-screen.tsx';
+import NotFoundScreen from '../../pages/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 
 
@@ -21,8 +20,12 @@ type AppScreenProps = {
 function App({reviews}: AppScreenProps): JSX.Element {
   const offers: Offer[] = useAppSelector((state) => state.offers);
   const favorites = offers.filter((o) => o.isFavorite);
-  const dispatch = useAppDispatch();
-  dispatch(listFilling());
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const loadingOffers = useAppSelector((state) => state.isOffersDataLoading);
+
+  if (authorizationStatus === AuthorizationStatus.Unknown || loadingOffers) {
+    return <LoadingScreen/>;
+  }
 
   return (
     <BrowserRouter>
@@ -39,7 +42,7 @@ function App({reviews}: AppScreenProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
+              authorizationStatus={authorizationStatus}
             >
               <FavoritesScreen favorites={favorites}/>
             </PrivateRoute>

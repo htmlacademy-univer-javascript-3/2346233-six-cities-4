@@ -1,5 +1,3 @@
-function formatRatingToStars(ratingValue: number): string {
+export function getRating(ratingValue: number): string {
   return `${ratingValue * 20}%`;
 }
-
-export { formatRatingToStars };

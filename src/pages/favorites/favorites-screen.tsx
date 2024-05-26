@@ -7,15 +7,16 @@ type FavoritesScreenProps = {
   favorites: Offer[];
 };
 
-function FavoritesPage({favorites}: FavoritesScreenProps): JSX.Element {
-  const favoritesMap = favorites.reduce(
-    (acc: Record<string, Offer[]>, place: Offer) => {
-      const city = place.city.name;
-      acc[city] = [...(acc[city] ?? []), place];
-      return acc;
-    },
-    {}
-  );
+function FavoritesScreen({favorites}: FavoritesScreenProps): JSX.Element {
+  const favoritesMap = favorites.reduce((acc, offer) => {
+    const { city: { name: cityName } } = offer;
+    if (!acc[cityName]) {
+      acc[cityName] = [];
+    }
+    acc[cityName].push(offer);
+    return acc;
+  }, {} as Record<string, Offer[]>);
+
   return(
     <div className="page">
       <header className="header">
@@ -81,4 +82,4 @@ function FavoritesPage({favorites}: FavoritesScreenProps): JSX.Element {
   );
 }
 
-export default FavoritesPage;
+export default FavoritesScreen;

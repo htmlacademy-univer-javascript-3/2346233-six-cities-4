@@ -1,4 +1,4 @@
-function NotFoundPage(): JSX.Element {
+function NotFoundScreen(): JSX.Element {
   return (
     <section className="error__screen">
       <h1>404. Page not found</h1>
@@ -7,4 +7,4 @@ function NotFoundPage(): JSX.Element {
   );
 }
 
-export default NotFoundPage;
+export default NotFoundScreen;

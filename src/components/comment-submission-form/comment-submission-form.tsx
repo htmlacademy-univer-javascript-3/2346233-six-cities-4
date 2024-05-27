@@ -1,4 +1,3 @@
-
 import { ChangeEvent, useState, FormEvent } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { sendCommentAction } from '../../store/api-actions.ts';

@@ -5,7 +5,7 @@ import { checkAuth, fetchOffers } from './store/api-actions.ts';
 import ErrorMessage from './components/error-message/error-message';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/app/app';
+import App from './components/App/app.tsx';
 
 store.dispatch(fetchOffers());
 store.dispatch(checkAuth());

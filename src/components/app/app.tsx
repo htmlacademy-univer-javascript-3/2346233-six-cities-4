@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../constants/constants.ts';
-import { Offer } from '../../types/offer';
+import { Offer } from '../../types/offer.ts';
 import { useAppSelector } from '../../hooks/index.ts';
 import { browserHistory } from '../../browser-history.ts';
 import { getAuthorizationStatus } from '../../store/user-slice/user-slice-selectors.ts';
@@ -8,12 +8,12 @@ import { getOffersLoadingStatus, getFavorites } from '../../store/offers-slice/o
 import { getCity } from '../../store/app-settings-slice/app-settings-selectors.ts';
 
 import LoadingScreen from '../../pages/loading-screen/loading-screen.tsx';
-import MainScreen from '../../pages/main-screen/main-screen';
-import FavoritesScreen from '../../pages/favorites/favorites-screen';
-import LoginScreen from '../../pages/login-screen/login-screen';
-import OfferScreen from '../../pages/offer/offer-screen';
-import NotFoundScreen from '../../pages/not-found-screen';
-import PrivateRoute from '../private-route/private-route';
+import MainScreen from '../../pages/main-screen/main-screen.tsx';
+import FavoritesScreen from '../../pages/favorites/favorites-screen.tsx';
+import LoginScreen from '../../pages/login-screen/login-screen.tsx';
+import OfferScreen from '../../pages/offer/offer-screen.tsx';
+import NotFoundScreen from '../../pages/not-found-screen.tsx';
+import PrivateRoute from '../private-route/private-route.tsx';
 import HistoryRouter from '../history-router/history-router.tsx';
 
 

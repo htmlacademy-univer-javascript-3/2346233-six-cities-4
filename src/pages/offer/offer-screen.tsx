@@ -11,6 +11,7 @@ import CommentSubmissionForm from '../../components/comment-submission-form/comm
 import Map from '../../components/map/map.tsx';
 import Header from '../../components/header/header.tsx';
 import AddToFavoritesButton from '../../components/favorite-button/favorite-button.tsx';
+import NotFoundScreen from '../../pages/not-found-screen.tsx';
 
 import { Offer } from '../../types/offer.ts';
 import { Points } from '../../types/points.ts';
@@ -45,7 +46,7 @@ function OfferScreen({favorites}: OfferScreenProps): JSX.Element {
   }, [dispatch, id]);
 
   if (!offerInfo) {
-    return <div className="container">Loading...</div>;
+    return (<NotFoundScreen/>);
   }
 
   return(
